@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduManage - School Management System</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5', // Indigo 600
+                        secondary: '#1e293b', // Slate 800
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 flex h-screen overflow-hidden font-sans">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-secondary text-white hidden md:flex flex-col">
+        <div class="h-16 flex items-center justify-center border-b border-gray-700">
+            <i class="fas fa-graduation-cap text-2xl text-primary mr-2"></i>
+            <span class="text-xl font-bold tracking-wider">EduManage</span>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-2 px-4">
+                <li>
+                    <a href="#" class="flex items-center px-4 py-3 bg-primary rounded-lg text-white">
+                        <i class="fas fa-chart-pie w-6"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                        <i class="fas fa-user-graduate w-6"></i> Students
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                        <i class="fas fa-chalkboard-teacher w-6"></i> Teachers
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                        <i class="fas fa-book w-6"></i> Academics
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition">
+                        <i class="fas fa-file-invoice-dollar w-6"></i> Fees & Finance
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-gray-700">
+            <a href="#" class="flex items-center px-4 py-2 text-gray-300 hover:text-white transition">
+                <i class="fas fa-sign-out-alt w-6"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        
+        <!-- Top Header -->
+        <header class="h-16 bg-white shadow-sm flex items-center justify-between px-6 z-10">
+            <div class="flex items-center">
+                <button class="md:hidden text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="relative ml-4 hidden sm:block">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </span>
+                    <input type="text" placeholder="Search students, staff..." class="w-64 pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-sm">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-400 hover:text-gray-600 relative">
+                    <i class="fas fa-bell text-xl"></i>
+                    <span class="absolute top-0 right-0 -mt-1 -mr-1 bg-red-500 w-4 h-4 rounded-full border-2 border-white text-xs text-white flex items-center justify-center">3</span>
+                </button>
+                <div class="flex items-center cursor-pointer">
+                    <img class="h-9 w-9 rounded-full object-cover" src="https://ui-avatars.com/api/?name=Admin+User&background=4f46e5&color=fff" alt="Admin">
+                    <span class="ml-2 text-sm font-medium text-gray-700 hidden sm:block">Admin</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Scrollable Content -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6">
+            
+            <div class="mb-6 flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
+                <button class="bg-primary hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition shadow-sm">
+                    <i class="fas fa-plus mr-2"></i> New Admission
+                </button>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Stat 1 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
+                        <i class="fas fa-user-graduate text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Total Students</p>
+                        <p class="text-2xl font-bold text-gray-800">2,450</p>
+                    </div>
+                </div>
+                <!-- Stat 2 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-600 mr-4">
+                        <i class="fas fa-chalkboard-teacher text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Total Teachers</p>
+                        <p class="text-2xl font-bold text-gray-800">112</p>
+                    </div>
+                </div>
+                <!-- Stat 3 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mr-4">
+                        <i class="fas fa-school text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Active Classes</p>
+                        <p class="text-2xl font-bold text-gray-800">48</p>
+                    </div>
+                </div>
+                <!-- Stat 4 -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-600 mr-4">
+                        <i class="fas fa-rupee-sign text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Fees Collection (Monthly)</p>
+                        <p class="text-2xl font-bold text-gray-800">₹8.5L</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts and Tables Area -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                
+                <!-- Chart Section -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 lg:col-span-1">
+                    <h2 class="text-lg font-bold text-gray-800 mb-4">Attendance Overview</h2>
+                    <div class="relative h-64 w-full">
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Data Table Section -->
+                <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 lg:col-span-2">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-bold text-gray-800">Recent Admissions</h2>
+                        <a href="#" class="text-primary text-sm font-medium hover:underline">View All</a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider">
+                                    <th class="p-3 font-medium rounded-tl-lg">ID</th>
+                                    <th class="p-3 font-medium">Student Name</th>
+                                    <th class="p-3 font-medium">Grade/Class</th>
+                                    <th class="p-3 font-medium">Date</th>
+                                    <th class="p-3 font-medium rounded-tr-lg">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentTableBody" class="text-sm divide-y divide-gray-100">
+                                <!-- Data populated via JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- JavaScript for Demo Data and Charts -->
+    <script>
+        // 1. Mock Data for Recent Students
+        const demoStudents = [
+            { id: 'STU-0892', name: 'Aarav Sharma', grade: 'Class 10 - A', date: '08 Nov 2026', status: 'Active' },
+            { id: 'STU-0893', name: 'Priya Singh', grade: 'Class 12 - Sci', date: '07 Nov 2026', status: 'Pending Fees' },
+            { id: 'STU-0894', name: 'Rohan Gupta', grade: 'Class 8 - B', date: '05 Nov 2026', status: 'Active' },
+            { id: 'STU-0895', name: 'Ananya Verma', grade: 'Class 11 - Com', date: '04 Nov 2026', status: 'Active' },
+            { id: 'STU-0896', name: 'Kabir Das', grade: 'Class 9 - C', date: '01 Nov 2026', status: 'Documentation' }
+        ];
+
+        // 2. Populate the Table
+        const tableBody = document.getElementById('studentTableBody');
+        demoStudents.forEach(student => {
+            let statusColor = student.status === 'Active' ? 'bg-green-100 text-green-700' : 
+                              student.status === 'Pending Fees' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-yellow-700';
+
+            const row = `
+                <tr class="hover:bg-gray-50 transition">
+                    <td class="p-3 font-medium text-gray-800">${student.id}</td>
+                    <td class="p-3 text-gray-700 flex items-center">
+                        <img src="https://ui-avatars.com/api/?name=${student.name.replace(' ', '+')}&background=random&color=fff&size=32" class="rounded-full mr-3" alt="avatar">
+                        ${student.name}
+                    </td>
+                    <td class="p-3 text-gray-600">${student.grade}</td>
+                    <td class="p-3 text-gray-600">${student.date}</td>
+                    <td class="p-3">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold ${statusColor}">
+                            ${student.status}
+                        </span>
+                    </td>
+                </tr>
+            `;
+            tableBody.insertAdjacentHTML('beforeend', row);
+        });
+
+        // 3. Initialize Chart.js
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const attendanceChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Present', 'Absent', 'Late'],
+                datasets: [{
+                    data: [85, 10, 5],
+                    backgroundColor: [
+                        '#4f46e5', // Indigo (Present)
+                        '#ef4444', // Red (Absent)
+                        '#f59e0b'  // Yellow (Late)
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20
+                        }
+                    }
+                },
+                cutout: '75%'
+            }
+        });
+    </script>
+</body>
+</html>
